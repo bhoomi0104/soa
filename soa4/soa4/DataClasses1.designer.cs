@@ -30,9 +30,9 @@ namespace soa4
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertStudent(Student instance);
-    partial void UpdateStudent(Student instance);
-    partial void DeleteStudent(Student instance);
+    partial void InsertProduct(Product instance);
+    partial void UpdateProduct(Product instance);
+    partial void DeleteProduct(Product instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -65,17 +65,17 @@ namespace soa4
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Student> Students
+		public System.Data.Linq.Table<Product> Products
 		{
 			get
 			{
-				return this.GetTable<Student>();
+				return this.GetTable<Product>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Student")]
-	public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Product")]
+	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -84,9 +84,9 @@ namespace soa4
 		
 		private string _Name;
 		
-		private System.Nullable<int> _age;
+		private System.Nullable<decimal> _Price;
 		
-		private string _email;
+		private string _Description;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -96,13 +96,13 @@ namespace soa4
     partial void OnIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
-    partial void OnageChanging(System.Nullable<int> value);
-    partial void OnageChanged();
-    partial void OnemailChanging(string value);
-    partial void OnemailChanged();
+    partial void OnPriceChanging(System.Nullable<decimal> value);
+    partial void OnPriceChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
     #endregion
 		
-		public Student()
+		public Product()
 		{
 			OnCreated();
 		}
@@ -147,42 +147,42 @@ namespace soa4
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_age", DbType="Int")]
-		public System.Nullable<int> age
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Price
 		{
 			get
 			{
-				return this._age;
+				return this._Price;
 			}
 			set
 			{
-				if ((this._age != value))
+				if ((this._Price != value))
 				{
-					this.OnageChanging(value);
+					this.OnPriceChanging(value);
 					this.SendPropertyChanging();
-					this._age = value;
-					this.SendPropertyChanged("age");
-					this.OnageChanged();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="NChar(10)")]
-		public string email
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NChar(10)")]
+		public string Description
 		{
 			get
 			{
-				return this._email;
+				return this._Description;
 			}
 			set
 			{
-				if ((this._email != value))
+				if ((this._Description != value))
 				{
-					this.OnemailChanging(value);
+					this.OnDescriptionChanging(value);
 					this.SendPropertyChanging();
-					this._email = value;
-					this.SendPropertyChanged("email");
-					this.OnemailChanged();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
 				}
 			}
 		}
